@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>亦未雨的个人主页</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  overflow:hidden;
+  color:#fff;
+  /* 背景图 */
+  background-image: url("image/dd01.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#starCanvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+/*头像固定*/
+.avatar{
+  position:fixed;
+  top:24px;
+  left:24px;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #ffffff;
+  box-shadow: 0 0 10px #8cf, 0 0 20px #8cf;
+  z-index:2;
+  transition: transform 0.3s ease;
+}
+.avatar:hover{
+  transform: scale(1.08);
+}
+.content{
+  position:relative;
+  z-index:1;
+  padding:30px;
+    margin-left:110px;
+    margin-top:5px;
+}
+.content h1{
+  text-shadow: 0 0 8px #fff,0 0 16px #8cf;
+}
+.content p{
+  text-shadow: 0 0 6px #aef;
+  margin-top:8px;
+}
+</style>
+</head>
+<body>
+<canvas id="starCanvas"></canvas>
+<img class="avatar" src="image/yukino01.jpg" alt="头像">
+<div class="content">
+  <h1>亦未雨的个人主页</h1>
+  <p>欢迎来到我的主页</p>
+</div>
+
+
+
+<script src="star.js">
+
+</script>
+</body>
+</html>
