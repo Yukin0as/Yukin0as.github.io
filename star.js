@@ -13,10 +13,18 @@ function resizeCanvas(){
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+
+// PC鼠标移动
 window.addEventListener('mousemove',(e)=>{
   mouseX = e.clientX;
   mouseY = e.clientY;
 })
+// 手机触摸滑动，星空跟随手指
+window.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  mouseX = e.touches[0].clientX;
+  mouseY = e.touches[0].clientY;
+}, { passive:false });
 
 const starCount = 5000;
 let stars = [];
@@ -88,41 +96,46 @@ function animate(){
   requestAnimationFrame(animate);
 }
 animate()
+
+// ========== 头像下拉菜单逻辑（PC点击 + 手机触屏都支持） ==========
 const avatarBtn = document.getElementById('avatarBtn');
 const dropMenu = document.getElementById('dropMenu');
+const panels = document.querySelectorAll('.panel');
+const links = document.querySelectorAll('.dropdown-menu a[href^="#"]');
 
-avatarBtn.onclick = function(e){
-  e.stopPropagation();
+function toggleMenu(e){
+  if(e) e.stopPropagation();
   dropMenu.classList.toggle('show');
 }
-// 点击页面空白处关闭菜单
-document.addEventListener('click', function(){
+
+// PC点击
+avatarBtn.addEventListener('click', toggleMenu);
+// 手机触摸触发（touchend，防止触摸滑动误触）
+avatarBtn.addEventListener('touchend', function(e){
+  e.preventDefault();
+  toggleMenu(e);
+})
+
+// 点击页面空白关闭菜单
+document.addEventListener('click', ()=>{
   dropMenu.classList.remove('show');
 })
-// 导航切换内容逻辑
-const panels = document.querySelectorAll('.panel');
-const links = document.querySelectorAll('.dropdown-menu a');
+document.addEventListener('touchstart', (e)=>{
+  // 不要点头像的时候触发关闭
+  if(!avatarBtn.contains(e.target)){
+    dropMenu.classList.remove('show');
+  }
+})
 
-// 默认打开首页
-document.querySelector('#home').classList.add('active');
-
+// 导航切换面板
 links.forEach(link=>{
   link.addEventListener('click', function(e){
-    e.preventDefault(); // 阻止默认跳转
-    // 全部隐藏
+    e.preventDefault();
+    const targetId = this.getAttribute('href').slice(1);
     panels.forEach(p=> p.classList.remove('active'));
-    // 拿到目标id，显示对应面板
-    const targetId = this.getAttribute('href');
-    document.querySelector(targetId).classList.add('active');
-    // 点完菜单自动收起下拉框（体验更好）
+    document.getElementById(targetId).classList.add('active');
     dropMenu.classList.remove('show');
   })
 })
-avatarBtn.addEventListener('click', function(e){
-  e.preventDefault();
-  toggleMenu();
-});
-avatarBtn.addEventListener('touchend', function(e){
-  e.preventDefault();
-  toggleMenu();
-});
+// 默认打开首页
+document.getElementById('home').classList.add('active');
