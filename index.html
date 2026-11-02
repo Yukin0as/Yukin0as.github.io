@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
+
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <title>亦未雨的个人主页</title>
 <style>
 *{
@@ -33,7 +37,9 @@ body{
   top:0;
   left:0;
   z-index:-1;
+  pointer-events: none;  /* <<<< 新增这一行！让点击直接穿透画布，点到下面头像 */
 }
+
 
 .content{
   position:relative;
