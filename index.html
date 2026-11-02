@@ -24,23 +24,7 @@ body{
   left:0;
   z-index:-1;
 }
-/*头像固定*/
-.avatar{
-  position:fixed;
-  top:24px;
-  left:24px;
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid #ffffff;
-  box-shadow: 0 0 10px #8cf, 0 0 20px #8cf;
-  z-index:2;
-  transition: transform 0.3s ease;
-}
-.avatar:hover{
-  transform: scale(1.08);
-}
+
 .content{
   position:relative;
   z-index:1;
@@ -55,15 +39,114 @@ body{
   text-shadow: 0 0 6px #aef;
   margin-top:8px;
 }
+.bg-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  object-fit:cover;
+  z-index:-2;
+}
+
+.avatar-wrap{
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 3;
+  position: relative; /* 作为下拉菜单的父容器 */
+}
+
+.avatar{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgba(170,220,255,0.6);
+  box-shadow: 0 0 12px #8cf;
+  cursor: pointer;
+  transition: 0.2s;
+  display: block;
+}
+.avatar:hover{
+  box-shadow: 0 0 20px #8cf;
+}
+
+.dropdown-menu{
+  position: absolute; /*  绝对定位，跟着父容器走 */
+  top: 100%;        /*  紧贴父元素底部，也就是头像的下面 */
+  left: 0;
+  margin-top: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(0, 20, 40, 0.1);
+  backdrop-filter: blur(6px);/*毛玻璃效果*/
+  padding: 12px;
+  border-radius: 10px;
+  min-width: 160px;
+}
+
+.dropdown-menu a{
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-shadow: 0 0 6px #8cf;
+  transition: 0.2s;
+  font-size:25px;
+}
+.dropdown-menu a:hover{
+  background: rgba(40, 120, 200, 0.55);
+  box-shadow: 0 0 10px #6bf;
+}
+.dropdown-menu.show{
+  display: flex;
+}
+/* 网页中间顶部标题 */
+.page-top-title{
+  position: fixed;
+  top: 40px;
+  left: min(50%);
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff;
+  font-size: 45px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px #8cf, 0 0 16px #6bf;
+
+  white-space: nowrap;
+}
+/* 窗口小于 1000px 的时候，文字不再居中，跑到头像右边 */
+@media (max-width: 1000px) {
+  .page-top-title{
+    left: 180px;
+    transform: translateX(0);
+  }
+}
+
 </style>
 </head>
 <body>
-<canvas id="starCanvas"></canvas>
-<img class="avatar" src="image/yukino01.jpg" alt="头像">
-<div class="content">
-  <h1>亦未雨的个人主页</h1>
-  <p>欢迎来到我的主页</p>
+<!-- 头像+下拉菜单容器 -->
+<div class="avatar-wrap">
+  <img class="avatar" src="image/yukino01.jpg"  id="avatarBtn">
+  <div class="dropdown-menu" id="dropMenu">
+    <a href="#home">🏠 首页</a>
+    <a href="#about">👤 关于我</a>
+    <a href="#works">📁 作品</a>
+    <a href="#contact">✉️ 联系</a>
+  </div>
 </div>
+<div class="page-top-title">
+  闪烁星辰之下，你我皆是过客
+</div>
+
+<canvas id="starCanvas"></canvas>
+<video class="bg-video" autoplay muted loop playsinline poster="image/dd01.png">
+  <source src="image/dd01.mp4" type="video/mp4">
+</video>
+
+
 
 
 

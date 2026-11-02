@@ -54,8 +54,8 @@ class Star {
       this.vy += dy / dist * force;
     }else{
       // 离开范围持续加速
-      this.vx *= 1.01;
-      this.vy *= 1.01;
+      this.vx *= 1.005;
+      this.vy *= 1.005;
     }
 
     // 位置更新
@@ -88,3 +88,14 @@ function animate(){
   requestAnimationFrame(animate);
 }
 animate()
+const avatarBtn = document.getElementById('avatarBtn');
+const dropMenu = document.getElementById('dropMenu');
+
+avatarBtn.onclick = function(e){
+  e.stopPropagation();
+  dropMenu.classList.toggle('show');
+}
+// 点击页面空白处关闭菜单
+document.addEventListener('click', function(){
+  dropMenu.classList.remove('show');
+})
