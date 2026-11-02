@@ -99,3 +99,30 @@ avatarBtn.onclick = function(e){
 document.addEventListener('click', function(){
   dropMenu.classList.remove('show');
 })
+// 导航切换内容逻辑
+const panels = document.querySelectorAll('.panel');
+const links = document.querySelectorAll('.dropdown-menu a');
+
+// 默认打开首页
+document.querySelector('#home').classList.add('active');
+
+links.forEach(link=>{
+  link.addEventListener('click', function(e){
+    e.preventDefault(); // 阻止默认跳转
+    // 全部隐藏
+    panels.forEach(p=> p.classList.remove('active'));
+    // 拿到目标id，显示对应面板
+    const targetId = this.getAttribute('href');
+    document.querySelector(targetId).classList.add('active');
+    // 点完菜单自动收起下拉框（体验更好）
+    dropMenu.classList.remove('show');
+  })
+})
+avatarBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  toggleMenu();
+});
+avatarBtn.addEventListener('touchend', function(e){
+  e.preventDefault();
+  toggleMenu();
+});

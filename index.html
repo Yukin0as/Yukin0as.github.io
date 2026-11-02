@@ -126,6 +126,35 @@ body{
 
   white-space: nowrap;
 }
+/* 切换内容面板 */
+.page-content{
+  position:fixed;
+  top:120px;
+  left:50%;
+  transform: translateX(-50%);
+  z-index:10;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,0.25);
+  border-radius:14px;
+
+}
+.panel{
+  display:none;
+}
+.panel.active{
+  display:block;
+}
+.page-content h2{
+  text-shadow: 0 0 8px #8cf;
+  margin-bottom:12px;
+}
+.page-content p{
+  text-shadow: 0 0 6px #aef;
+  line-height:1.8;
+}
+
 /* 窗口小于 1000px 的时候，文字不再居中，跑到头像右边 */
 @media (max-width: 1000px) {
   .page-top-title{
@@ -174,21 +203,65 @@ body{
     <a href="#about">👤 关于我</a>
     <a href="#works">📁 作品</a>
     <a href="#contact">✉️ 联系</a>
+    <a>⛏ 扩展中......</a>
   </div>
 </div>
+<!-- 内容面板，点击导航在这里切换文字 -->
+<div class="page-content">
+  <div id="home" class="panel">
+    <h2>欢迎来到我的主页</h2>
+    <div style="width:60px;height:2px;background:linear-gradient(90deg,transparent,#8cf,transparent);margin:12px auto 18px auto;box-shadow:0 0 8px #8cf;"></div>
+
+
+  <p style="color:#fff;text-shadow:0 0 5px #fff;margin-top:8px;">记录学习、项目与生活碎片</p>
+
+  <div class="tags" style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+    <span style="padding:6px 14px;border:1px solid #c9b8ff;border-radius:20px;color:#c9b8ff;text-shadow:0 0 6px #8cf;font-size:14px;">Python</span>
+    <span style="padding:6px 14px;border:1px solid #c9b8ff;border-radius:20px;color:#c9b8ff;text-shadow:0 0 6px #8cf;font-size:14px;">数据分析</span>
+    <span style="padding:6px 14px;border:1px solid #c9b8ff;border-radius:20px;color:#c9b8ff;text-shadow:0 0 6px #8cf;font-size:14px;">可视化</span>
+    <span style="padding:6px 14px;border:1px solid #c9b8ff;border-radius:20px;color:#c9b8ff;text-shadow:0 0 6px #c9b8ff;font-size:14px;">个人主页</span>
+  </div>
+  </div>
+
+
+
+
+
+  <div id="about" class="panel">
+    <h2>关于我</h2>
+    <p>亦未雨</p>
+    <p><p style="color:#c9b8ff;text-shadow:0 0 6px #c9b8ff;text-decoration:none;">爱好：</p>篮球，特摄，模型</p>
+    <p><p style="color:#c9b8ff;text-shadow:0 0 6px #c9b8ff;text-decoration:none;">简介：</p>陕西理工大学23届信息与计算科学，数理基础扎实，深入学习数学分析，高等代数，概率论，离散数学。熟悉Python，C/C++等编程语言。<br>
+    <p style="color:#c9b8ff;text-shadow:0 0 6px #c9b8ff;text-decoration:none;">专业技能：</p>
+    编程语言：C/C++，Python<br>
+    数据分析：Pandas，Numpy，Matplotlib，Plotly<br>
+    Web开发：Streamlit，HTML/CSS/JS</p>
+  </div>
+  <div id="works" class="panel">
+    <h2>我的作品</h2>
+    <p >项目1：<a href="https://house-price-app-vj6adyryakujxaip7hzsrw.streamlit.app/" target="_blank" style="color:#8cf;text-shadow:0 0 6px #8cf;text-decoration:none;">房价预测构建与可视化分析 </a></p>
+    <p>项目2：<a style="color:#c9b8ff;text-shadow:0 0 6px #c9b8ff;text-decoration:none;">AI智能体与RAG知识库应用开发</a></p>
+    <p>项目3：<a style="color:#c9b8ff;text-shadow:0 0 6px #c9b8ff;text-decoration:none;">共享单车温度与租车量相关性分析</a></p>
+    <p>项目4：<a style="color:#c9b8ff;text-shadow:0 0 6px #c9b8ff;text-decoration:none;">个人网页搭建</a></p>
+  </div>
+  <div id="contact" class="panel">
+    <h2>联系方式</h2>
+    <p>email：yukinoshita040912@gmail.com</p>
+    <p>github：<a href="https://github.com/Yukin0as" target="_blank" style="color:#8cf;text-shadow:0 0 6px #8cf;text-decoration:none;">Yukin0as</a></p>
+    <p>Bilibili：<a href="https://space.bilibili.com/62882127?spm_id_from=333.1007.0.0" style="color:#8cf;text-shadow:0 0 6px #8cf;text-decoration:none;">个人主页</a></p>
+  </div>
+</div>
+
 <div class="page-top-title">
   闪烁星辰之下，你我皆是过客
 </div>
-
 <canvas id="starCanvas"></canvas>
-
-
-
-
-
-
 <script src="star.js">
-
 </script>
+
+<div style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 8; font-size: 12px; color:#c9b8ff; text-shadow: 0 0 4px #c9b8ff; opacity:0.7;">
+© 2026 亦未雨
+</div>
+
 </body>
 </html>
